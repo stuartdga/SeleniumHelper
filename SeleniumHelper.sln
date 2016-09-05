@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumHelper", "SeleniumHelper\SeleniumHelper.csproj", "{1EA38CEC-53BF-4F52-9AD9-19E783533186}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumHelper.Tests", "SeleniumHelper.Tests\SeleniumHelper.Tests.csproj", "{B6BD38F8-2E22-47BA-891A-1B01EBD95D08}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1EA38CEC-53BF-4F52-9AD9-19E783533186}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EA38CEC-53BF-4F52-9AD9-19E783533186}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EA38CEC-53BF-4F52-9AD9-19E783533186}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EA38CEC-53BF-4F52-9AD9-19E783533186}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6BD38F8-2E22-47BA-891A-1B01EBD95D08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6BD38F8-2E22-47BA-891A-1B01EBD95D08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6BD38F8-2E22-47BA-891A-1B01EBD95D08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6BD38F8-2E22-47BA-891A-1B01EBD95D08}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,1 @@
+﻿Set the propertieds of this file to Embedded Resource.
