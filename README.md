@@ -27,6 +27,12 @@ _maximize_ (the browser window) defaults to true for local execution and false f
 __InitializeRemote:__ Browser browser, Uri seleniumHubURL, string operatingSystem<br />
 You can use this method to initialize the remote webdriver directly.
 
+You can set the remote webdriver URL in the app.config:
+
+  <appSettings>
+    <add key="SeleniumHubURL" value="http://127.0.0.1:4444/wd/hub" />
+  </appSettings>
+
 ###### Utility Class:
 This class contains useful methods to make tests easier
 to create.
