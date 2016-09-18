@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
@@ -73,7 +74,18 @@ namespace Selenium.Helper
         public static IWebDriver InitializeRemote(Browser browser, Uri seleniumHubURL, string operatingSystem = "")
         {
             var capabilities = new DesiredCapabilities();
-            if (seleniumHubURL != null)
+            if (seleniumHubURL == null || seleniumHubURL.ToString() == "")
+            {
+                try
+                {
+                    seleniumHubURL = new Uri(ConfigurationManager.AppSettings["SeleniumHubURL"].ToString().ToLower());
+                }
+                catch
+                {
+                    seleniumHubURL = null;
+                }
+            }
+            if (seleniumHubURL != null && seleniumHubURL.ToString() != "")
             {
                 if (operatingSystem != "")
                     capabilities.SetCapability(CapabilityType.Platform, operatingSystem);

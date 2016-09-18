@@ -1,41 +1,54 @@
-SeleniumHelper for C#
+# SeleniumHelper for C#
 
 This project is a simple framework for 
 creating Selenium tests using the Selenium
 WebDriver and the Selenium Grid.  This version is using version 3
 of the Selenium WebDriver.
 
-The project has two main classes:  Connector and Utility.
+### The project has two main classes:  Connector and Utility.
 
-Connector Class:
+###### Connector Class:
 Use this class to initialize an instance of the WebDriver, 
 either local or remote.  Current browsers supported are:
 
-Local:  Firefox, Chrome or PhantomJS<br />
-Remote:  Firefox or Chrome
+There are several overloadeds for the __Initialize__ method:<br />
+###### Local execution:  Firefox, Chrome or PhantomJS<br />
+1. string browser <br />
+2. string browser, string driverPath <br />
+3. string browser, bool remote, string driverPath, Uri seleniumHubURL, string operatingSystem, , bool maximize <br />
+<br />
+###### Remote execution:  Firefox or Chrome
+1. string browser, Uri seleniumHubURL <br />
+2. string browser, Uri seleniumHubURL, string operatingSystem, bool maximize <br />
 
-Utility Class:
+_operatingSystem_ defaults to Any<br />
+_maximize_ (the browser window) defaults to true for local execution and false for remote execution
+
+__InitializeRemote:__ Browser browser, Uri seleniumHubURL, string operatingSystem<br />
+You can use this method to initialize the remote webdriver directly.
+
+###### Utility Class:
 This class contains useful methods to make tests easier
 to create.
 
-GoTo: navigates to the desired URL<br />
-InputValue: sets the value of an Input textbox<br />
-SetDropDownItem: sets an option list to a specified option<br />
-WaitForElementReady: returns an iWebElement once it is available
+__GoTo:__ navigates to the desired URL<br />
+__InputValue:__ sets the value of an Input textbox<br />
+__SetDropDownItem:__ sets an option list to a specified option<br />
+__WaitForElementReady:__ returns an iWebElement once it is available
 on the web page<br />
-WaitForElementByIdReady: returns an iWebElement based on the document Id once it is available
+__WaitForElementByIdReady:__ returns an iWebElement based on the document Id once it is available
 on the web page <br />
-WaitForElementXpathIdReady: returns an iWebElement based on an Xpath selector once it is available
+__WaitForElementXpathIdReady:__ returns an iWebElement based on an Xpath selector once it is available
 on the web page <br />
-GetDriver: returns an instance of the driver that is associated 
+__GetDriver:__ returns an instance of the driver that is associated 
 with an iWebElement<br />
-GetID: returns the document Id of an iWebElement if it exists<br />
-GetClasses: returns a list of CSS classes for an iWebElement<br />
-HasClass:  returns a bool if a class is present on an iWebElement<br />
-SetAttribue: sets the value of an HTML element's attribute<br />
-ExtractManifestResourceToDisk: supports extracting embedded resources allowing them
+__GetID:__ returns the document Id of an iWebElement if it exists<br />
+__GetClasses:__ returns a list of CSS classes for an iWebElement<br />
+__HasClass:__  returns a bool if a class is present on an iWebElement<br />
+__SetAttribue:__ sets the value of an HTML element's attribute<br />
+__ExtractManifestResourceToDisk:__ supports extracting embedded resources allowing them
 to be utilized for tests<br />
-ResetDriver: quit the driver and release any resources
+__ResetDriver:__ quit the driver and release any resources
 
 The project includes unit tests for the classes listed above as well
 as sample tests using the framework.

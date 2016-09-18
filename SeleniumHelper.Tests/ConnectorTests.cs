@@ -42,6 +42,22 @@ namespace SeleniumHelper.Tests
             Assert.IsNotNull(driver);
             Assert.IsTrue((((OpenQA.Selenium.Remote.RemoteWebDriver)(driver)).Capabilities).BrowserName.ToLower() == Browser.Chrome.ToString().ToLower());
             driver = Utility.ResetDriver(driver);
+
+            Uri EmptyUri = null; // Url comes from app.config
+            driver = Connector.Initialize(Browser.Chrome, EmptyUri);
+            Assert.IsNotNull(driver);
+            Assert.IsTrue((((OpenQA.Selenium.Remote.RemoteWebDriver)(driver)).Capabilities).BrowserName.ToLower() == Browser.Chrome.ToString().ToLower());
+            driver = Utility.ResetDriver(driver);
+
+            //clear app.config to execute the following
+            //try
+            //{
+            //    Eriver = Connector.Initialize(Browser.Chrome, EmptyUri);
+            //}
+            //catch(Exception ex)
+            //{
+            //    Assert.AreEqual(ex.Message, "URL for SeleniumHub must be provided");
+            //}
         }
     }
 
