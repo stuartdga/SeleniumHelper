@@ -29,10 +29,11 @@ You can use this method to initialize the remote webdriver directly.
 
 You can set the remote webdriver URL in the app.config:
 
+`
   <appSettings>
     <add key="SeleniumHubURL" value="http://127.0.0.1:4444/wd/hub" />
   </appSettings>
-
+`
 ###### Utility Class:
 This class contains useful methods to make tests easier
 to create.
