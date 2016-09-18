@@ -15,8 +15,8 @@ There are several overloadeds for the __Initialize__ method:<br />
 ###### Local execution:  Firefox, Chrome or PhantomJS<br />
 1. string browser <br />
 2. string browser, string driverPath <br />
-3. string browser, bool remote, string driverPath, Uri seleniumHubURL, string operatingSystem, , bool maximize <br />
-<br />
+3. string browser, bool remote, string driverPath, Uri seleniumHubURL, string operatingSystem, , bool maximize
+
 ###### Remote execution:  Firefox or Chrome
 1. string browser, Uri seleniumHubURL <br />
 2. string browser, Uri seleniumHubURL, string operatingSystem, bool maximize <br />
