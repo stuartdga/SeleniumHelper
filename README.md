@@ -1,4 +1,4 @@
-# SeleniumHelper for C#
+# SeleniumHelper for C# #
 
 This project is a simple framework for 
 creating Selenium tests using the Selenium
