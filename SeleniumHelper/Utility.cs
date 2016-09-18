@@ -3,15 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Threading;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Internal;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Support;
 using OpenQA.Selenium.Support.UI;
-using System.Collections.ObjectModel;
+using OpenQA.Selenium.Internal;
 
 namespace Selenium.Helper
 {
@@ -98,8 +93,8 @@ namespace Selenium.Helper
             {
                 if (driver != null)
                 {
-                    driver.Close();
                     driver.Quit();
+                    driver.Dispose();
                     driver = null;
                 }
             }

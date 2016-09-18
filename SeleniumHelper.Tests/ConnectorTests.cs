@@ -35,12 +35,12 @@ namespace SeleniumHelper.Tests
         }
 
         [TestMethod]
-        public void InitializeRemoteFirefoxTest()
+        public void InitializeRemoteTest()
         {
             var seleniumHubURL = new Uri(ConfigurationManager.AppSettings["SeleniumHubURL"].ToString().ToLower());
-            var driver = Connector.Initialize(Browser.Firefox, seleniumHubURL);
+            var driver = Connector.Initialize(Browser.Chrome, seleniumHubURL);
             Assert.IsNotNull(driver);
-            Assert.IsTrue((((OpenQA.Selenium.Remote.RemoteWebDriver)(driver)).Capabilities).BrowserName.ToLower() == Browser.Firefox.ToString().ToLower());
+            Assert.IsTrue((((OpenQA.Selenium.Remote.RemoteWebDriver)(driver)).Capabilities).BrowserName.ToLower() == Browser.Chrome.ToString().ToLower());
             driver = Utility.ResetDriver(driver);
         }
     }

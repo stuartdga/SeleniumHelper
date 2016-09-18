@@ -28,7 +28,7 @@ namespace SeleniumHelper.Tests
 			driver = Utility.ResetDriver(driver);
 		}
 
-		// Example test of the PlaneBiz logon page
+		// Example test of the Wikipedia search page
 		[TestMethod]
 		public void WikipediaSearch()
 		{

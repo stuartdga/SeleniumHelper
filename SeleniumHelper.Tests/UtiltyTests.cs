@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support;
-using OpenQA.Selenium.PhantomJS;
 using Selenium.Helper;
 
 namespace SeleniumHelper.Tests
@@ -45,7 +42,8 @@ namespace SeleniumHelper.Tests
         public void Initialize()
         {
             //driver = Connector.Initialize("phantomjs");
-            driver = Connector.Initialize(Browser.Firefox);
+            //driver = Connector.Initialize(Browser.Firefox);
+            driver = Connector.Initialize(Browser.Chrome);
         }
 
         // Use TestCleanup to run code after each test has run

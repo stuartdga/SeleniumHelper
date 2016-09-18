@@ -9,15 +9,13 @@ namespace Selenium.Helper
 {
     public enum Browser
     {
-        Firefox,
         Chrome,
+        Firefox,
         PhantomJS
     }
     public class Connector
     {
         public static IWebDriver driver { get; set; }
-
-        private const string WINDOWS = "WINDOWS";
 
         private const Uri EmptyUri = null;
 
@@ -29,65 +27,34 @@ namespace Selenium.Helper
         public static IWebDriver Initialize(Browser browser, string driverPath)
         {
             return Initialize(browser, false, driverPath, EmptyUri, "");
-
-
         }
 
         public static IWebDriver Initialize(Browser browser, Uri seleniumHubURL)
         {
-            return Initialize(browser, true, "", seleniumHubURL, WINDOWS);
+            return Initialize(browser, true, "", seleniumHubURL);
         }
 
-        public static IWebDriver Initialize(Browser browser, Uri seleniumHubURL, string operatingSystem)
+        public static IWebDriver Initialize(Browser browser, Uri seleniumHubURL, string operatingSystem = "", bool maximize = false)
         {
-            return Initialize(browser, true, "", seleniumHubURL, operatingSystem);
+            return Initialize(browser, true, "", seleniumHubURL, operatingSystem, maximize);
         }
 
-        public static IWebDriver Initialize(Browser browser, bool remote, string driverPath, Uri seleniumHubURL, string operatingSystem)
+        public static IWebDriver Initialize(Browser browser, bool remote, string driverPath, Uri seleniumHubURL, string operatingSystem = "", bool maximize = true)
         {
-            if (driverPath == "")
-            {
-                driverPath = System.IO.Directory.GetCurrentDirectory();
-            }
-
-            DesiredCapabilities capabilities = new DesiredCapabilities();
-
             if (remote)
             {
-                if (seleniumHubURL != null)
-                {
-                    switch (browser)
-                    {
-                        case Browser.Firefox:
-                            capabilities = new DesiredCapabilities();
-                            capabilities = DesiredCapabilities.Firefox();
-                            capabilities.SetCapability(CapabilityType.BrowserName, "firefox");
-                            capabilities.SetCapability(CapabilityType.Platform, operatingSystem);
-                            driver = new RemoteWebDriver(seleniumHubURL, capabilities);
-                            break;
-                        case Browser.Chrome:
-                            capabilities = new DesiredCapabilities();
-                            capabilities = DesiredCapabilities.Chrome();
-                            capabilities.SetCapability(CapabilityType.BrowserName, "chrome");
-                            capabilities.SetCapability(CapabilityType.Platform, operatingSystem);
-                            driver = new RemoteWebDriver(seleniumHubURL, capabilities);
-                            break;
-                    }
-                }
-                else
-                    throw new Exception("URL for SeleniumHub must be provided");
+                driver = InitializeRemote(browser, seleniumHubURL);
             }
             else
             {
                 switch (browser)
                 {
                     case Browser.PhantomJS:
-                        if (driverPath != "")
+                        if (driverPath == "")
                         {
-                            driver = new PhantomJSDriver(driverPath);
+                            driverPath = System.IO.Directory.GetCurrentDirectory();
                         }
-                        else
-                            throw new Exception("Path for PhantomJS must be provided");
+                        driver = new PhantomJSDriver(driverPath);
                         break;
                     case Browser.Firefox:
                         driver = new FirefoxDriver();
@@ -98,8 +65,36 @@ namespace Selenium.Helper
                 }
             }
 
-            driver.Manage().Window.Maximize();
+            if (maximize)
+                driver.Manage().Window.Maximize();
             return driver;
+        }
+
+        public static IWebDriver InitializeRemote(Browser browser, Uri seleniumHubURL, string operatingSystem = "")
+        {
+            var capabilities = new DesiredCapabilities();
+            if (seleniumHubURL != null)
+            {
+                if (operatingSystem != "")
+                    capabilities.SetCapability(CapabilityType.Platform, operatingSystem);
+                switch (browser)
+                {
+                    case Browser.Chrome:
+                        capabilities = DesiredCapabilities.Chrome();
+                        //capabilities.SetCapability(CapabilityType.BrowserName, "chrome");
+                        break;
+                    case Browser.Firefox:
+                        capabilities = DesiredCapabilities.Firefox();
+                        //capabilities.SetCapability(CapabilityType.BrowserName, "firefox");
+                        break;
+                }
+                driver = new RemoteWebDriver(seleniumHubURL, capabilities);
+            }
+            else
+                throw new Exception("URL for SeleniumHub must be provided");
+            
+            return driver;
+
         }
 
     }
