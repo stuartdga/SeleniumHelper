@@ -61,7 +61,10 @@ namespace Selenium.Helper
                         driver = new FirefoxDriver();
                         break;
                     case Browser.Chrome:
-                        driver = new ChromeDriver();
+                        // prevent annoying popup from Chrome regarding Developer Extensions
+                        var options = new ChromeOptions();
+                        options.AddArgument("--disable-extensions");
+                        driver = new ChromeDriver(options);
                         break;
                 }
             }
