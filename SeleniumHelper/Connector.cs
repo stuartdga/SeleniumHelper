@@ -58,13 +58,16 @@ namespace Selenium.Helper
                         driver = new PhantomJSDriver(driverPath);
                         break;
                     case Browser.Firefox:
-                        driver = new FirefoxDriver();
+                        var firefoxOptions = new FirefoxOptions();
+                        firefoxOptions.UseLegacyImplementation = true;
+                        driver = new FirefoxDriver(firefoxOptions);
                         break;
                     case Browser.Chrome:
                         // prevent annoying popup from Chrome regarding Developer Extensions
-                        var options = new ChromeOptions();
-                        options.AddArgument("--disable-extensions");
-                        driver = new ChromeDriver(options);
+                        var chromeOptions = new ChromeOptions();
+                        chromeOptions.AddArgument("--disable-extensions");
+                        chromeOptions.AddArgument("--test-type");
+                        driver = new ChromeDriver(chromeOptions);
                         break;
                 }
             }
