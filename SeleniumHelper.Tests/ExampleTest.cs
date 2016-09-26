@@ -18,7 +18,7 @@ namespace SeleniumHelper.Tests
 		[TestInitialize()]
 		public void Initialize()
 		{
-			driver = Connector.Initialize(Browser.Firefox);
+			driver = Connector.Initialize(Browser.Chrome);
 		}
 
 		// Use TestCleanup to run code after each test has run
