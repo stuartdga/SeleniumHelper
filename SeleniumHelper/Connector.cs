@@ -67,6 +67,8 @@ namespace Selenium.Helper
                         var chromeOptions = new ChromeOptions();
                         chromeOptions.AddArgument("--disable-extensions");
                         chromeOptions.AddArgument("--test-type");
+                        if (maximize)
+                            chromeOptions.AddArgument("--start-maximized");
                         driver = new ChromeDriver(chromeOptions);
                         break;
                 }

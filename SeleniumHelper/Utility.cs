@@ -19,9 +19,9 @@ namespace Selenium.Helper
 
     public static class Utility
     {
-        public static bool WaitForElementReady(IWebDriver driver, string findElement, FindByType findByType = FindByType.Id, int sleetMilleseconds = 500, int waitSeconds = 30)
+        public static bool WaitForElementReady(IWebDriver driver, string findElement, FindByType findByType = FindByType.Id, int sleepMilleseconds = 500, int waitSeconds = 30)
         {
-            Thread.Sleep(sleetMilleseconds);
+            Thread.Sleep(sleepMilleseconds);
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(waitSeconds));
             return wait.Until<bool>((d) =>
             {
@@ -39,9 +39,9 @@ namespace Selenium.Helper
             });
         }
 
-        public static bool WaitForElementByXpathReady(IWebDriver driver, string xPathString, int sleetMilleseconds = 500, int waitSeconds = 30)
+        public static bool WaitForElementByXpathReady(IWebDriver driver, string xPathString, int sleepMilleseconds = 500, int waitSeconds = 30)
         {
-            Thread.Sleep(sleetMilleseconds);
+            Thread.Sleep(sleepMilleseconds);
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(waitSeconds));
             return wait.Until<bool>((d) =>
             {
@@ -49,9 +49,9 @@ namespace Selenium.Helper
             });
         }
 
-        public static bool WaitForElementByIdReady(IWebDriver driver, string id, int sleetMilleseconds = 500, int waitSeconds = 30)
+        public static bool WaitForElementByIdReady(IWebDriver driver, string id, int sleepMilleseconds = 500, int waitSeconds = 30)
         {
-            Thread.Sleep(sleetMilleseconds);
+            Thread.Sleep(sleepMilleseconds);
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(waitSeconds));
             return wait.Until<bool>((d) =>
             {
@@ -63,8 +63,6 @@ namespace Selenium.Helper
         {
             driver.Navigate().GoToUrl(url);
             return (driver.Url == url);
-
-
         }
 
         public static IWebElement InputValue(IWebDriver driver, string id, string value)
