@@ -55,7 +55,9 @@ __HasClass:__  returns a bool if a class is present on an iWebElement<br />
 __SetAttribue:__ sets the value of an HTML element's attribute<br />
 __ExtractManifestResourceToDisk:__ supports extracting embedded resources allowing them
 to be utilized for tests<br />
-__ResetDriver:__ quit the driver and release any resources
+__ResetDriver:__ quit the driver and release any resources<br />
+__CaptureScreenshot:__ captures the screen of a browser running on a remote node and saves it 
+to a text file in Base64 format<br />
 
 The project includes unit tests for the classes listed above as well
 as sample tests using the framework.
