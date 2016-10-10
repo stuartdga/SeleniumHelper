@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -96,7 +97,7 @@ namespace Selenium.Helper
                     driver = null;
                 }
             }
-            catch (Exception ex) { }
+            catch { }
             return driver;
         }
 
@@ -165,6 +166,25 @@ namespace Selenium.Helper
             return true;
         }
 
+        public static string CaptureScreenShot(IWebDriver driver, string methodName)
+        {
+            try
+            {
+                if (driver == null)
+                    return "";
+                if (driver is RemoteWebDriverAugmented)
+                {
+                    if ((ConfigurationManager.AppSettings["CaptureScreenshot"].ToString() == "true") &&
+                        (ConfigurationManager.AppSettings["ScreenShotPath"].ToString() != ""))
+                    {
+                        string filePath = ConfigurationManager.AppSettings["ScreenShotPath"].ToString();
+                        return RemoteWebDriverAugmented.CaptureScreenshot(driver as RemoteWebDriverAugmented, filePath, methodName);
+                    }
+                }
+                return "";
+            }
+            catch { return ""; }
+        }
         public static bool ExtractManifestResourceToDisk(string filename, bool replace = true)
         {
             var fullFileName = @".\" + @"\" + filename;

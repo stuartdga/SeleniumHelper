@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using Selenium.Helper;
 
 namespace SeleniumHelper.Tests
@@ -189,6 +191,24 @@ namespace SeleniumHelper.Tests
                 Utility.SetAttribute(element, attribute, value);
                 Assert.IsTrue(Utility.HasClass(element, value));
             }
+        }
+
+        [TestMethod]
+        public void CaptureScreenShot()
+        {
+            Assert.AreEqual(Utility.CaptureScreenShot(null, ""), "");
+            Assert.AreEqual(Utility.CaptureScreenShot(driver, ""), "");
+            Utility.ResetDriver(driver);
+
+            //// a grid must be running for the following code to execute
+            //// app.config must be updated with CaptureScreenshot = true
+            //var seleniumHubURL = new Uri(ConfigurationManager.AppSettings["SeleniumHubURL"].ToString().ToLower());
+            //driver = Connector.Initialize(Browser.Chrome, seleniumHubURL);
+            //Assert.IsNotNull(driver);
+            //Utility.GoTo(driver, "http://127.0.0.1:4444/grid/console");
+            //string result = Utility.CaptureScreenShot(driver, System.Reflection.MethodInfo.GetCurrentMethod().Name);
+            //string path = ConfigurationManager.AppSettings["ScreenShotPath"].ToString();
+            //Assert.IsTrue(result.StartsWith(path));
         }
 
         #endregion

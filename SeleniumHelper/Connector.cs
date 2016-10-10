@@ -108,7 +108,7 @@ namespace Selenium.Helper
                         //capabilities.SetCapability(CapabilityType.BrowserName, "firefox");
                         break;
                 }
-                driver = new RemoteWebDriver(seleniumHubURL, capabilities);
+                driver = new RemoteWebDriverAugmented(seleniumHubURL, capabilities);
             }
             else
                 throw new Exception("URL for SeleniumHub must be provided");
