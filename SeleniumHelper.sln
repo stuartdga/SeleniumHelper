@@ -10,8 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{87CBF7FB-7FEA-48D1-9F08-0D8B3458AF91}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
-		Selenium.Helper.1.0.0-beta.nuspec = Selenium.Helper.1.0.0-beta.nuspec
-		Selenium.Helper.1.0.1-beta.nuspec = Selenium.Helper.1.0.1-beta.nuspec
+		Selenium.Helper.1.0.0.nuspec = Selenium.Helper.1.0.0.nuspec
 	EndProjectSection
 EndProject
 Global

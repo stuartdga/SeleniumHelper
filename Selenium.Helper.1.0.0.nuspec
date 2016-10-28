@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>Selenium.Helper</id>
+        <version>1.0.0</version>
+        <title>Selenium Helper for .NET</title>
+        <authors>Stuart Dickerson</authors>
+        <owners>Software Freedom Conservancy</owners>
+        <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+        <projectUrl>https://github.com/stuartdga/SeleniumHelper</projectUrl>
+        <iconUrl>http://seleniumhq.org/images/big-logo.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>This package contains .NET helper classes to make the creation of Selenium tests easier.  It contains a Connector class that supports various initializations of the Driver.  It also contains a utility class to assist in working with elements.</description>
+        <summary>Helper classes for the .NET version of the Selenium WebDriver API</summary>
+        <tags>Selenium WebDriver browser automation website testing framework</tags>
+        <dependencies>
+            <group targetFramework=".NETFramework4.0">
+                <dependency id="Selenium.WebDriver" version="3.0.0" />
+                <dependency id="Selenium.Support" version="3.0.0" />
+                <dependency id="PhantomJS" version="2.1.1" />
+                <dependency id="Selenium.WebDriver.ChromeDriver" version="2.23.0.1" />
+            </group>
+        </dependencies>
+        <frameworkAssemblies>
+            <frameworkAssembly assemblyName="System.Configuration" targetFramework="" />
+        </frameworkAssemblies>
+    </metadata>
+    <files>
+        <file src="SeleniumHelper\bin\Debug\Selenium.Helper.dll" target="lib\net40\Selenium.Helper.dll" />
+    </files>
+</package>
