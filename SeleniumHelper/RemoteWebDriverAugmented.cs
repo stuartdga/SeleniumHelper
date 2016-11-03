@@ -38,6 +38,8 @@ namespace Selenium.Helper
             string file = "";
             if (filePath != "" && fileName != "")
             {
+                if (!System.IO.Directory.Exists(filePath))
+                    System.IO.Directory.CreateDirectory(filePath);
                 fileName = string.Format(fileName + "-{0:yyyy-MM-dd_hh-mm-ss-tt}.txt", DateTime.Now);
                 file = string.Format("{0}\\{1}", filePath, fileName);
                 System.IO.File.WriteAllText(file, ss.ToString());

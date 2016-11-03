@@ -14,6 +14,7 @@ namespace SeleniumHelper.Tests
     [TestClass]
     public class UtilityTests
     {
+        public const string CATEGORYCLASS = "Utility";
         public IWebDriver driver;
         public string html = System.IO.Directory.GetCurrentDirectory().ToLower().Replace("\\", "/").Replace("\\", "/").Replace("c:", "file:///c:/") + "/tests.html";
 
@@ -55,7 +56,7 @@ namespace SeleniumHelper.Tests
             driver = Utility.ResetDriver(driver);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory(CATEGORYCLASS)]
         public void WaitForElementReadyTest()
         {
             Assert.IsNotNull(driver);
@@ -65,7 +66,7 @@ namespace SeleniumHelper.Tests
             Assert.IsTrue(Utility.WaitForElementReady(driver, "//*[@id='Text1']", FindByType.XPath));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory(CATEGORYCLASS)]
         public void WaitForElementByIdReadyTest()
         {
             Assert.IsNotNull(driver);
@@ -74,7 +75,7 @@ namespace SeleniumHelper.Tests
             Assert.IsTrue(Utility.WaitForElementByIdReady(driver, "Text1"));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory(CATEGORYCLASS)]
         public void WaitForElementByXPathReadyTest()
         {
             Assert.IsNotNull(driver);
@@ -83,7 +84,7 @@ namespace SeleniumHelper.Tests
             Assert.IsTrue(Utility.WaitForElementByXpathReady(driver, "//*[@id='Text1']"));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory(CATEGORYCLASS)]
         public void GoToTest()
         {
             Assert.IsNotNull(driver);
@@ -91,7 +92,7 @@ namespace SeleniumHelper.Tests
             Assert.IsTrue(driver.Title.ToLower() == "tests");
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory(CATEGORYCLASS)]
         public void InputValueTest()
         {
             // this test currently fails in PhantomJS
@@ -101,7 +102,7 @@ namespace SeleniumHelper.Tests
             Assert.AreEqual(element.GetAttribute("value"), "asdf");
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory(CATEGORYCLASS)]
         public void SetDropDownItem()
         {
             Assert.IsNotNull(driver);
@@ -110,7 +111,7 @@ namespace SeleniumHelper.Tests
             Assert.AreEqual(element.SelectedOption.Text, "2");
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory(CATEGORYCLASS)]
         public void ExtractManifestResourceToDisk()
         {
             Assert.IsTrue(Utility.ExtractManifestResourceToDisk("embedded.txt"));
@@ -118,7 +119,7 @@ namespace SeleniumHelper.Tests
             Assert.IsTrue(Utility.ExtractManifestResourceToDisk("embeddedinfolder.txt", "Data"));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory(CATEGORYCLASS)]
         public void ResetDriver()
         {
             driver = Utility.ResetDriver(driver);
@@ -129,7 +130,7 @@ namespace SeleniumHelper.Tests
 
         #region Element helper tests
 
-        [TestMethod]
+        [TestMethod, TestCategory(CATEGORYCLASS)]
         public void GetDriver()
         {
             string id = "label1";
@@ -143,7 +144,7 @@ namespace SeleniumHelper.Tests
             }
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory(CATEGORYCLASS)]
         public void GetClasses()
         {
             string id = "label1";
@@ -157,7 +158,7 @@ namespace SeleniumHelper.Tests
             }
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory(CATEGORYCLASS)]
         public void HasClass()
         {
             string id = "label1";
@@ -177,7 +178,7 @@ namespace SeleniumHelper.Tests
             }
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory(CATEGORYCLASS)]
         public void SetAttribute()
         {
             string id = "Text1";
@@ -193,22 +194,23 @@ namespace SeleniumHelper.Tests
             }
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory(CATEGORYCLASS), TestCategory("RemoteWebDriver")]
         public void CaptureScreenShot()
         {
             Assert.AreEqual(Utility.CaptureScreenShot(null, ""), "");
             Assert.AreEqual(Utility.CaptureScreenShot(driver, ""), "");
             Utility.ResetDriver(driver);
 
-            //// a grid must be running for the following code to execute
-            //// app.config must be updated with CaptureScreenshot = true
-            //var seleniumHubURL = new Uri(ConfigurationManager.AppSettings["SeleniumHubURL"].ToString().ToLower());
-            //driver = Connector.Initialize(Browser.Chrome, seleniumHubURL);
-            //Assert.IsNotNull(driver);
-            //Utility.GoTo(driver, "http://127.0.0.1:4444/grid/console");
-            //string result = Utility.CaptureScreenShot(driver, System.Reflection.MethodInfo.GetCurrentMethod().Name);
-            //string path = ConfigurationManager.AppSettings["ScreenShotPath"].ToString();
-            //Assert.IsTrue(result.StartsWith(path));
+            // a grid must be running for the following code to execute
+            // app.config must be updated with CaptureScreenshot = true
+            var seleniumHubURL = new Uri(ConfigurationManager.AppSettings["SeleniumHubURL"].ToString().ToLower());
+            driver = Connector.Initialize(Browser.Chrome, seleniumHubURL);
+            Assert.IsNotNull(driver);
+            Utility.GoTo(driver, "http://127.0.0.1:4444/grid/console");
+            string result = Utility.CaptureScreenShot(driver, System.Reflection.MethodInfo.GetCurrentMethod().Name);
+            string path = ConfigurationManager.AppSettings["ScreenShotPath"].ToString();
+            Assert.IsTrue(result.StartsWith(path));
+            Assert.IsTrue(System.IO.File.Exists(result));
         }
 
         #endregion

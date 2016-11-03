@@ -60,4 +60,16 @@ __CaptureScreenshot:__ captures the screen of a browser running on a remote node
 to a text file in Base64 format<br />
 
 The project includes unit tests for the classes listed above as well
-as sample tests using the framework.
+as sample tests using the framework.  Unit tests have categories so 
+that you can segregate them if needed.  For tests that have a category of
+*RemoteWebDriver* you must have a selenium grid running and the app.config 
+with appSettings to provide the URL and location of where to store a screenshot
+if you with to capture them.  Below is an example:
+
+`
+  <appSettings>
+    <add key="SeleniumHubURL" value="http://127.0.0.1:4444/wd/hub" />
+    <add key="CaptureScreenshot" value="true"/>
+    <add key="ScreenShotPath" value="C:\\Temp\\screenshot"/>
+  </appSettings>
+`

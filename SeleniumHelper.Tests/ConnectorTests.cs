@@ -8,7 +8,9 @@ namespace SeleniumHelper.Tests
     [TestClass]
     public class ConnectorTests
     {
-        [TestMethod]
+        public const string CATEGORYCLASS = "Connector";
+
+        [TestMethod, TestCategory(CATEGORYCLASS)]
         public void InitializeFirefoxTest()
         {
             var driver = Connector.Initialize(Browser.Firefox);
@@ -17,7 +19,7 @@ namespace SeleniumHelper.Tests
             driver = Utility.ResetDriver(driver);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory(CATEGORYCLASS)]
         public void InitializeChromeTest()
         {
             var driver = Connector.Initialize(Browser.Chrome);
@@ -26,7 +28,7 @@ namespace SeleniumHelper.Tests
             driver = Utility.ResetDriver(driver);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory(CATEGORYCLASS)]
         public void InitializePhantomJSTest()
         {
             var driver = Connector.Initialize(Browser.PhantomJS);
@@ -34,31 +36,44 @@ namespace SeleniumHelper.Tests
             driver = Utility.ResetDriver(driver);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory(CATEGORYCLASS), TestCategory("RemoteWebDriver")]
         public void InitializeRemoteTest()
         {
-            //// a grid must be running for the following code to execute
-            //var seleniumHubURL = new Uri(ConfigurationManager.AppSettings["SeleniumHubURL"].ToString().ToLower());
-            //var driver = Connector.Initialize(Browser.Chrome, seleniumHubURL);
-            //Assert.IsNotNull(driver);
-            //Assert.IsTrue((((OpenQA.Selenium.Remote.RemoteWebDriver)(driver)).Capabilities).BrowserName.ToLower() == Browser.Chrome.ToString().ToLower());
-            //driver = Utility.ResetDriver(driver);
+            // a grid must be running for the following code to execute
+            var seleniumHubURL = new Uri(ConfigurationManager.AppSettings["SeleniumHubURL"].ToString().ToLower());
+            var driver = Connector.Initialize(Browser.Chrome, seleniumHubURL);
+            Assert.IsNotNull(driver);
+            Assert.IsTrue((((OpenQA.Selenium.Remote.RemoteWebDriver)(driver)).Capabilities).BrowserName.ToLower() == Browser.Chrome.ToString().ToLower());
+            driver = Utility.ResetDriver(driver);
 
-            //Uri EmptyUri = null; // Url comes from app.config
-            //driver = Connector.Initialize(Browser.Chrome, EmptyUri);
-            //Assert.IsNotNull(driver);
-            //Assert.IsTrue((((OpenQA.Selenium.Remote.RemoteWebDriver)(driver)).Capabilities).BrowserName.ToLower() == Browser.Chrome.ToString().ToLower());
-            //driver = Utility.ResetDriver(driver);
+            Uri EmptyUri = null; // Url comes from app.config
+            driver = Connector.Initialize(Browser.Chrome, EmptyUri);
+            Assert.IsNotNull(driver);
+            Assert.IsTrue((((OpenQA.Selenium.Remote.RemoteWebDriver)(driver)).Capabilities).BrowserName.ToLower() == Browser.Chrome.ToString().ToLower());
+            driver = Utility.ResetDriver(driver);
 
-            ////Remove appSettings key SeleniumHubURL in app.config to execute the following
+            //Remove appSettings key SeleniumHubURL in app.config to execute the following
             //try
             //{
             //    driver = Connector.Initialize(Browser.Chrome, EmptyUri);
+            //    driver = Utility.ResetDriver(driver);
             //}
-            //catch(Exception ex)
+            //catch (Exception ex)
             //{
             //    Assert.AreEqual(ex.Message, "URL for SeleniumHub must be provided");
             //}
+        }
+
+        [TestMethod, TestCategory(CATEGORYCLASS), TestCategory("RemoteWebDriver")]
+        public void CaptureScreenshotTest()
+        {
+            // a grid must be running for the following code to execute
+            var seleniumHubURL = new Uri(ConfigurationManager.AppSettings["SeleniumHubURL"].ToString().ToLower());
+            var driver = Connector.Initialize(Browser.Chrome, seleniumHubURL);
+            Assert.IsNotNull(driver);
+            string file = RemoteWebDriverAugmented.CaptureScreenshot(driver as RemoteWebDriverAugmented, "C:\\Temp\\screenshot", "testimage.txt");
+            Assert.IsTrue(System.IO.File.Exists(file));
+            driver = Utility.ResetDriver(driver);
         }
     }
 
