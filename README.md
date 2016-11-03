@@ -29,11 +29,10 @@ You can use this method to initialize the remote webdriver directly.
 
 You can set the remote webdriver URL in the app.config:
 
-`
-  <appSettings>
-    <add key="SeleniumHubURL" value="http://127.0.0.1:4444/wd/hub" />
-  </appSettings>
-`
+`<appSettings>`<br />
+`   <add key="SeleniumHubURL" value="http://127.0.0.1:4444/wd/hub" />`<br />
+` </appSettings>`<br />
+
 ###### Utility Class:
 This class contains useful methods to make tests easier
 to create.
@@ -66,10 +65,8 @@ that you can segregate them if needed.  For tests that have a category of
 with appSettings to provide the URL and location of where to store a screenshot
 if you with to capture them.  Below is an example:
 
-`
-  <appSettings>
-    <add key="SeleniumHubURL" value="http://127.0.0.1:4444/wd/hub" />
-    <add key="CaptureScreenshot" value="true"/>
-    <add key="ScreenShotPath" value="C:\\Temp\\screenshot"/>
-  </appSettings>
-`
+`<appSettings>`<br />
+`   <add key="SeleniumHubURL" value="http://127.0.0.1:4444/wd/hub" />`<br />
+`   <add key="CaptureScreenshot" value="true"/>`<br />
+`   <add key="ScreenShotPath" value="C:\\Temp\\screenshot"/>`<br />
+` </appSettings>`<br />
