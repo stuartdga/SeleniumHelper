@@ -123,9 +123,9 @@ namespace SeleniumHelper.Tests
         public void ResetDriver()
         {
             driver = Utility.ResetDriver(driver);
-            Assert.IsNull(driver);
+            Assert.IsNull((driver as ChromeDriver).SessionId);
             driver = Utility.ResetDriver(driver);
-            Assert.IsNull(driver);
+            Assert.IsNull((driver as ChromeDriver).SessionId);
         }
 
         #region Element helper tests

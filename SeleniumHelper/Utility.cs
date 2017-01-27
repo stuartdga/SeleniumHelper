@@ -28,14 +28,12 @@ namespace Selenium.Helper
             {
                 switch (findByType)
                 {
-                    case FindByType.Id:
-                        return driver.FindElement(By.Id("" + findElement + "")).Displayed == true;
                     case FindByType.XPath:
-                        return driver.FindElement(By.XPath("" + findElement + "")).Displayed == true;
+                        return driver.FindElement(By.XPath("" + findElement + "")).Displayed;
                     case FindByType.CSSSelector:
-                        return driver.FindElement(By.CssSelector("" + findElement + "")).Displayed == true;
+                        return driver.FindElement(By.CssSelector("" + findElement + "")).Displayed;
                     default:
-                        return driver.FindElement(By.Id("" + findElement + "")).Displayed == true;
+                        return driver.FindElement(By.Id("" + findElement + "")).Displayed;
                 }
             });
         }
@@ -46,7 +44,7 @@ namespace Selenium.Helper
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(waitSeconds));
             return wait.Until<bool>((d) =>
             {
-                return driver.FindElement(By.XPath("" + xPathString + "")).Displayed == true;
+                return driver.FindElement(By.XPath("" + xPathString + "")).Displayed;
             });
         }
 
@@ -56,7 +54,7 @@ namespace Selenium.Helper
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(waitSeconds));
             return wait.Until<bool>((d) =>
             {
-                return driver.FindElement(By.Id("" + id + "")).Displayed == true;
+                return driver.FindElement(By.Id("" + id + "")).Displayed;
             });
         }
 
@@ -94,10 +92,12 @@ namespace Selenium.Helper
                 {
                     driver.Quit();
                     driver.Dispose();
-                    driver = null;
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
             return driver;
         }
 
@@ -130,7 +130,9 @@ namespace Selenium.Helper
         {
             var classes = Utility.GetClasses(element);
             if (classes == null || classes.Count == 0)
+            {
                 return false;
+            }
             return classes.Contains(className);
         }
 
@@ -145,19 +147,20 @@ namespace Selenium.Helper
 
         public static bool ExtractManifestResourceToDisk(string filename, string folder, bool replace = true)
         {
-            var targetFolder = @".\" + folder;
             var fullFileName = @".\" + folder + @"\" + filename;
             var assembly = Assembly.GetCallingAssembly();
             if (File.Exists(fullFileName) && !replace)
+            {
                 return true;
-
+            }
             var uri = assembly.GetName().Name + "." + folder + "." + filename;
 
             using (Stream input = assembly.GetManifestResourceStream(uri))
             {
                 if (input == null)
+                {
                     return false;
-
+                }
                 using (Stream output = File.Create(fullFileName))
                 {
                     input.CopyTo(output);
@@ -171,15 +174,15 @@ namespace Selenium.Helper
             try
             {
                 if (driver == null)
-                    return "";
-                if (driver is RemoteWebDriverAugmented)
                 {
-                    if ((ConfigurationManager.AppSettings["CaptureScreenshot"].ToString() == "true") &&
-                        (ConfigurationManager.AppSettings["ScreenShotPath"].ToString() != ""))
-                    {
-                        string filePath = ConfigurationManager.AppSettings["ScreenShotPath"].ToString();
-                        return RemoteWebDriverAugmented.CaptureScreenshot(driver as RemoteWebDriverAugmented, filePath, methodName);
-                    }
+                    return "";
+                }
+                if (driver is RemoteWebDriverAugmented && 
+                    (ConfigurationManager.AppSettings["CaptureScreenshot"] == "true") &&
+                    (ConfigurationManager.AppSettings["ScreenShotPath"] != ""))
+                {
+                    string filePath = ConfigurationManager.AppSettings["ScreenShotPath"];
+                    return RemoteWebDriverAugmented.CaptureScreenshot(driver as RemoteWebDriverAugmented, filePath, methodName);
                 }
                 return "";
             }
@@ -190,8 +193,9 @@ namespace Selenium.Helper
             var fullFileName = @".\" + @"\" + filename;
             var assembly = Assembly.GetCallingAssembly();
             if (File.Exists(fullFileName) && !replace)
+            {
                 return true;
-
+            }
             var uri = assembly.GetName().Name + "." + filename;
 
             using (Stream input = assembly.GetManifestResourceStream(uri))

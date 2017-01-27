@@ -33,15 +33,15 @@ namespace Selenium.Helper
         public static string CaptureScreenshot(RemoteWebDriverAugmented driver, string filePath = "", string fileName = "")
         {
             Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
-            string screenshot = ss.AsBase64EncodedString;
-            byte[] screenshotAsByteArray = ss.AsByteArray;
             string file = "";
             if (filePath != "" && fileName != "")
             {
                 if (!System.IO.Directory.Exists(filePath))
+                {
                     System.IO.Directory.CreateDirectory(filePath);
-                fileName = string.Format(fileName + "-{0:yyyy-MM-dd_hh-mm-ss-tt}.txt", DateTime.Now);
-                file = string.Format("{0}\\{1}", filePath, fileName);
+                }
+                var newFileName = string.Format(fileName + "-{0:yyyy-MM-dd_hh-mm-ss-tt}.txt", DateTime.Now);
+                file = string.Format("{0}\\{1}", filePath, newFileName);
                 System.IO.File.WriteAllText(file, ss.ToString());
             }
             return file;
