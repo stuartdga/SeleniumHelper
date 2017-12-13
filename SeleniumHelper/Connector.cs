@@ -106,5 +106,16 @@ namespace Selenium.Helper
 
         }
 
+        public static IWebDriver GetRemoteChromeDriver()
+        {
+            var options = new ChromeOptions
+            {
+                BinaryLocation = @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+            };
+            DesiredCapabilities capabilities = DesiredCapabilities.Chrome();
+            capabilities.SetCapability(ChromeOptions.Capability, options);
+            WebDriver = new RemoteWebDriver(new Uri("http://192.168.2.4:4444/wd/hub"), capabilities);
+            return WebDriver;
+        }
     }
 }

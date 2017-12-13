@@ -36,6 +36,12 @@ namespace SeleniumHelper.Tests
             driver = Utility.ResetDriver(driver);
         }
 
+        [TestMethod]
+        public void RemoteTest()
+        {
+            var driver = Connector.GetRemoteChromeDriver();
+        }
+
         [TestMethod, TestCategory(CATEGORYCLASS), TestCategory("RemoteWebDriver")]
         public void InitializeRemoteTest()
         {
