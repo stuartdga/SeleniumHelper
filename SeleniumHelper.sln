@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumHelper", "SeleniumHelper\SeleniumHelper.csproj", "{1EA38CEC-53BF-4F52-9AD9-19E783533186}"
 EndProject
@@ -10,7 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{87CBF7FB-7FEA-48D1-9F08-0D8B3458AF91}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
-		Selenium.Helper.1.0.1.nuspec = Selenium.Helper.1.0.1.nuspec
+		Selenium.Helper.1.0.2.nuspec = Selenium.Helper.1.0.2.nuspec
 	EndProjectSection
 EndProject
 Global
@@ -30,5 +30,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E3274723-8F97-4A46-886E-272AD50F86C9}
 	EndGlobalSection
 EndGlobal
